@@ -1,4 +1,4 @@
-swears <- c('bad', words)
+swears <- c('bad', 'words')
 
 swear_df <- map_df(swears, function(swear){
   
@@ -21,4 +21,11 @@ swear_df %>%
   group_by(author) %>%
   slice(1) %>%
   filter(times_used > 0) %>%
+  View
+
+swear_df %>%
+  group_by(author) %>%
+  summarise(times_used = sum(swear_count)) %>%
+  filter(times_used > 0) %>%
+  arrange(-times_used) %>%
   View
